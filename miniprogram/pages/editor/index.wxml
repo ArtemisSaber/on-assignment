@@ -1,2 +1,12 @@
-
+<view>
+  <view>Editors</view>
+  <editor
+    id="editor"
+    class="wxFormEditor"
+    bindready="readyEditor"
+    bindstatuschange="changeStatusEditor"
+    bindinput="inputEditor"
+  ></editor>
+  <view class="toolbar"></view>
+</view>
 

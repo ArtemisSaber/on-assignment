@@ -1,2 +1,4 @@
-
+<scroll-view class="mdContainer">
+  <towxml nodes="{{article}}" />
+</scroll-view>
 
