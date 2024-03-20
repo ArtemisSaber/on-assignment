@@ -2,7 +2,7 @@
 <scroll-view class="scrollarea" scroll-y type="list">
     <view class="container">
         <view class="btn-containers">
-            <button class="btn btn-primary" wx:for="{{navLinks}}" wx:key="id" bindtap="handleTapNavLink" data-route="{{item.route}}">
+            <button class="btn btn-primary" wx:for="{{navLinks}}" wx:key="id" bindtap="handleTapNavLink" data-id="{{item.id}}" data-route="{{item.route}}">
                 {{item.label}}
             </button>
         </view>

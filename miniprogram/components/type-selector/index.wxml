@@ -1,0 +1,9 @@
+<view class="selector-main">
+    <view class="selectors">
+        <view class="selector-item {{item.selected?'selected':''}}" wx:key="id" data-id="{{item.id}}" wx:for="{{selectors}}" bindtap="onTapSelector">
+            <view class="selector">
+                <view class='selector-content'>{{item.name}}</view>
+            </view>
+        </view>
+    </view>
+</view>

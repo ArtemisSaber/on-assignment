@@ -1,3 +1,4 @@
+import { BASE_URL } from '../config'
 import { urlcat } from '../utils/util'
 
 export const request = (
@@ -32,4 +33,17 @@ export const request = (
             }
         })
     })
+}
+
+export const requestAPI = (
+    url: string,
+    method: 'GET' | 'POST' | 'PUT' | 'DELETE' = 'GET',
+    data: any = {},
+    params: any = null,
+    header: any = {
+        'content-type': 'application/json'
+    }
+) => {
+    const newUrl = BASE_URL + url
+    return request(newUrl, method, data, params, header)
 }

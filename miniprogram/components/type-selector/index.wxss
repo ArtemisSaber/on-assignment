@@ -1,0 +1,30 @@
+.selector-main {
+    width: 100%;
+    background-color: #faf7f6;
+    height: 48px;
+    border-radius: 24px;
+}
+
+.selector-main .selectors {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: space-between;
+}
+.selector-main .selectors .selector-item {
+    display: flex;
+    border-radius: 24px;
+    height: 100%;
+    flex-grow: 1;
+    justify-content: center;
+    align-items: center;
+}
+.selector-main .selectors .selector-item.selected {
+    background-color: #fff;
+    border: 1px solid #000;
+    box-sizing: border-box;
+}
+
+.selector-main .selector-content {
+    font-size: 16px;
+}

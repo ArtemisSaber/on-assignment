@@ -1,0 +1,9 @@
+<view class="swiper-main">
+    <swiper indicator-dots="{{true}}" autoplay="{{false}}">
+        <block wx:for="{{images}}">
+            <swiper-item>
+                <image class="swiper-image" mode="aspectFit" src="{{item}}" />
+            </swiper-item>
+        </block>
+    </swiper>
+</view>

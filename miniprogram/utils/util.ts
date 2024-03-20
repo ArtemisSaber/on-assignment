@@ -1,3 +1,5 @@
+import { Color, Product, Selectors, Type } from '../types/types'
+
 export const querystring = {
     stringify(o: Record<string, any>) {
         const keys = Object.keys(o)
@@ -76,7 +78,7 @@ export function navigateTo(url: string) {
     return universalNav(url, 'navigateTo')
 }
 
-export const currencySymbol = (currency: string): string => {
+const currencySymbol = (currency: string): string => {
     currency = currency.toUpperCase()
     switch (currency) {
         case 'CNY':
@@ -86,4 +88,63 @@ export const currencySymbol = (currency: string): string => {
         default:
             return '¥'
     }
+}
+
+export const formatPriceAmount = (n: number): string => {
+    const a = n / 100
+    const canOmitFractional = a % 1 === 0
+    const b = Number(a).toFixed(2)
+    const [intPart, fractionalPart] = b.split('.')
+
+    let ret = ''
+    let count = 0
+    for (let i = intPart.length - 1; i >= 0; i--) {
+        ret = intPart[i] + ret
+        if (++count % 3 === 0 && i !== 0) ret = '' + ret // remove comma for consistency
+    }
+    if (!canOmitFractional) ret = ret + '.' + fractionalPart
+    return ret
+}
+export const formatPrice: (x: {
+    currency?: string
+    amount: number
+}) => string = ({ currency, amount }) => {
+    return currencySymbol(currency || 'CNY') + formatPriceAmount(amount)
+}
+
+export const parseSelectors = (p: Product): Array<Selectors> => {
+    return p.types.map((type, index) => {
+        return {
+            name: type.name,
+            selected: index === 0,
+            id: type.id
+        }
+    })
+}
+
+export const createSizeSelectors = (t: Type): Array<Selectors> => {
+    return t.allSizes.map((size) => {
+        return {
+            name: size,
+            id: size,
+            selected: false,
+            enabled: false
+        }
+    })
+}
+
+export const updateSizeSelectors = (
+    c: Color,
+    sizes: Array<Selectors>
+): Array<Selectors> => {
+    const availSizes = c.skus.map((sku) => {
+        return sku.size
+    })
+    const updatedSizes = sizes.map((size) => {
+        return {
+            ...size,
+            enabled: availSizes.includes(size.id)
+        }
+    })
+    return updatedSizes
 }

@@ -1,0 +1,12 @@
+<view class="action-bar">
+    <view class="actions">
+        <view class="action-item {{item.className}}" style="{{item.style}}" wx:key="id" data-id="{{item.id}}" wx:for="{{actions}}" bindtap="onTapAction">
+            <view class="icon-wrapper" wx:if="{{item.icon}}">
+                <text class="iconfont {{item.icon}} icon" />
+            </view>
+            <view class="action">
+                <view class="action-name">{{item.name}}</view>
+            </view>
+        </view>
+    </view>
+</view>

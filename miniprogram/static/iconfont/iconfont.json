@@ -1,0 +1,23 @@
+{
+  "id": "4475394",
+  "name": "Demo",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "8776692",
+      "name": "message",
+      "font_class": "message",
+      "unicode": "e635",
+      "unicode_decimal": 58933
+    },
+    {
+      "icon_id": "8776822",
+      "name": "cart_empty",
+      "font_class": "cart",
+      "unicode": "e63b",
+      "unicode_decimal": 58939
+    }
+  ]
+}

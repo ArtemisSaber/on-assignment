@@ -1,1 +1,5 @@
-<scroll-view class="product-list-container"></scroll-view>
+<scroll-view class="product-list-container">
+    <view class="product-card" wx:key="id" data-id="{{item.id}}" wx:for="{{products}}" bindtap="onTapProduct">
+        <product-tile item="{{item}}" />
+    </view>
+</scroll-view>

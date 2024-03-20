@@ -1,4 +1,4 @@
-import { request } from '../../api/fetcher'
+import { requestAPI } from '../../api/fetcher'
 import { ArticleData } from '../../types/types'
 
 const app = getApp()
@@ -9,17 +9,21 @@ Component({
         isLoading: true
     },
     methods: {
-        async onLoad(opts: any) {
+        async onLoad(_opts: WechatMiniprogram.Page.CustomOption) {
             if (!this.data.isLoading) {
                 this.setData({ isLoading: true })
             }
-            const resData = (await request(
-                'http://192.168.6.10:8080/articles/ART-1'
-            )) as ArticleData
-            console.log('res data', resData)
-            if (resData.content) {
-                const result = app.towxml(resData.content, 'markdown')
-                this.setData({ article: result, isLoading: false })
+            if (_opts.articleId) {
+                const resData = (await requestAPI(
+                    `articles/${_opts.articleId}`
+                )) as ArticleData
+                if (resData.content) {
+                    const result = app.towxml(resData.content, 'markdown')
+                    this.setData({
+                        article: result,
+                        isLoading: false
+                    })
+                }
             }
         }
     }

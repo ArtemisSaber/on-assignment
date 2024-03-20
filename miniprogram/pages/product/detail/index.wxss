@@ -1,0 +1,11 @@
+.product-layout {
+    max-width: 750rpx;
+    height: 100vh;
+}
+.product-item {
+    margin: 40rpx;
+}
+
+.product-item .content-item {
+    margin-bottom: 40rpx;
+}
