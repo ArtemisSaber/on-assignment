@@ -5,3 +5,8 @@ export interface NavLink {
     route: ROUTES
     label: string
 }
+
+export interface ArticleData {
+    id: string
+    content: string
+}

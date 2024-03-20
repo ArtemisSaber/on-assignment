@@ -1,15 +1,19 @@
 {
-  "name": "miniprogram-ts-less-quickstart",
-  "version": "1.0.0",
-  "description": "",
-  "scripts": {
-  },
-  "keywords": [],
-  "author": "",
-  "license": "",
-  "dependencies": {
-  },
-  "devDependencies": {
-    "miniprogram-api-typings": "^2.8.3-1"
-  }
+    "name": "miniprogram-ts-less-quickstart",
+    "version": "1.0.0",
+    "description": "",
+    "scripts": {
+        "test": "jest --coverage"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "",
+    "dependencies": {},
+    "devDependencies": {
+        "@types/jest": "^29.5.12",
+        "@types/node": "^20.11.30",
+        "jest": "^29.7.0",
+        "miniprogram-api-typings": "^2.8.3-1",
+        "miniprogram-simulate": "^1.6.1"
+    }
 }

@@ -75,3 +75,15 @@ export function switchTab(url: string) {
 export function navigateTo(url: string) {
     return universalNav(url, 'navigateTo')
 }
+
+export const currencySymbol = (currency: string): string => {
+    currency = currency.toUpperCase()
+    switch (currency) {
+        case 'CNY':
+            return '¥'
+        case 'USD':
+            return '$'
+        default:
+            return '¥'
+    }
+}

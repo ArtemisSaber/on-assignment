@@ -1,4 +1,5 @@
 import { request } from '../../api/fetcher'
+import { ArticleData } from '../../types/types'
 
 const app = getApp()
 
@@ -12,12 +13,14 @@ Component({
             if (!this.data.isLoading) {
                 this.setData({ isLoading: true })
             }
-            const resData = await request(
-                'https://www.vvadd.com/wxml_demo/demo.txt?v=2'
-            )
+            const resData = (await request(
+                'http://192.168.6.10:8080/articles/ART-1'
+            )) as ArticleData
             console.log('res data', resData)
-            const result = app.towxml(resData, 'markdown')
-            this.setData({ article: result })
+            if (resData.content) {
+                const result = app.towxml(resData.content, 'markdown')
+                this.setData({ article: result, isLoading: false })
+            }
         }
     }
 })

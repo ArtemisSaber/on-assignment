@@ -1,0 +1,5 @@
+<view class="item-main">
+    <view class="item-image-container">
+        <image mode="aspectFill" src="item.coverimage" style="width:140px;height:168px" />
+    </view>
+</view>

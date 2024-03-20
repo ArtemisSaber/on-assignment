@@ -1,20 +1,10 @@
 <!-- index.wxml -->
-<scroll-view
-  class="scrollarea"
-  scroll-y
-  type="list"
->
-  <view class="container">
-    <view>
-      <button
-        wx:for="{{navLinks}}"
-        wx:key="{{item.id}}"
-        bindtap="handleTapNavLink"
-        data-route="{{item.route}}"
-      >
-        {{item.label}}
-      </button>
+<scroll-view class="scrollarea" scroll-y type="list">
+    <view class="container">
+        <view class="btn-containers">
+            <button class="btn btn-primary" wx:for="{{navLinks}}" wx:key="id" bindtap="handleTapNavLink" data-route="{{item.route}}">
+                {{item.label}}
+            </button>
+        </view>
     </view>
-  </view>
 </scroll-view>
-

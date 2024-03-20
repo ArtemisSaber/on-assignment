@@ -1,9 +1,10 @@
 {
     "pages": [
         "pages/index/index",
-        "pages/logs/logs",
         "pages/editor/index",
-        "pages/article/index"
+        "pages/article/index",
+        "pages/product/detail/index",
+        "pages/product/list/index"
     ],
     "window": {
         "navigationBarTextStyle": "black",
