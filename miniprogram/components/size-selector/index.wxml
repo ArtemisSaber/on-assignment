@@ -1,6 +1,6 @@
 <view class="size-selector-main">
     <view class="selectors">
-        <view class="selector-item {{item.selected?'selected':''}} {{item.enabled?'enabled':'disabled'}}" wx:key="id" data-id="{{item.id}}" wx:for="{{selectors}}" bindtap="onTapSelector">
+        <view class="selector-item {{item.selected?'selected':''}} {{item.enabled?'enabled':'disabled'}}" wx:key="id" data-id="{{item.id}}" data-enabled="{{item.enabled}}" wx:for="{{selectors}}" bindtap="onTapSelector">
             <view class="selector">
                 <view class='selector-content'>{{item.name}}</view>
             </view>

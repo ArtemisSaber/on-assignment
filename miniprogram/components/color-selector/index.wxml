@@ -1,0 +1,11 @@
+<view class="color-main">
+    <scroll-view class="sv" scroll-x="{{true}}" scroll-with-animation="{{true}}" enable-flex enhanced="{{true}}" show-scrollbar="{{false}}">
+        <block wx:for="{{colors}}" wx:key="index">
+            <view class="card {{item.id === currentColor?'selected':''}}" data-idx="{{index}}" data-colorid="{{item.id}}" bindtap="handleTapCarouselItem">
+                <view>
+                    <image mode="aspectFit" src="{{item.images[0]}}" class="color-image" />
+                </view>
+            </view>
+        </block>
+    </scroll-view>
+</view>

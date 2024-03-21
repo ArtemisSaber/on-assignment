@@ -1,0 +1,9 @@
+<view class="accordion-main">
+    <view class="accordion-title" bindtap="handleTapTitle">
+        <text>{{item.title}}</text>
+        <text class="iconfont icon-add icon {{showAccordion?'show':'hidden'}}" />
+    </view>
+    <view class="accordion-content {{showAccordion?'show':'hidden'}}">
+        <text class="content">{{item.text}}</text>
+    </view>
+</view>

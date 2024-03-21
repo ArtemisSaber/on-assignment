@@ -1,5 +1,5 @@
 import { requestAPI } from '../../../api/fetcher'
-import { Color, Product, Selectors, Type } from '../../../types/types'
+import { Color, Product, Selectors, Skus, Type } from '../../../types/types'
 import {
     createSizeSelectors,
     parseSelectors,
@@ -13,6 +13,8 @@ Component({
         displayTypeData: {} as Type,
         sizeSelectors: [] as Array<Selectors>,
         displayColorData: {} as Color,
+        currentSKU: {} as Skus,
+        innerScrollable: false,
         actions: [
             {
                 name: '客服',
@@ -28,7 +30,8 @@ Component({
                 icon: ''
             },
             { name: '立即购买', id: 'buyNow', className: 'btn btn-primary' }
-        ]
+        ],
+        currentDisplayPrice: ''
     },
     methods: {
         async onLoad(opts: WechatMiniprogram.Page.CustomOption) {
@@ -60,9 +63,24 @@ Component({
                             sizeSelectors,
                             displayColorData: defaultColor
                         })
+                        if (defaultColor.skus.length > 0) {
+                            const defaultSKU = defaultColor.skus[0]
+                            this.setData({
+                                currentSKU: defaultSKU
+                            })
+                        }
                     }
                 }
             }
+        },
+        onOuterViewLower(e: WechatMiniprogram.ScrollViewScrollToLower) {
+            console.log('scroll to lower', e.detail)
+            this.setData({ innerScrollable: true })
+        },
+        onInnerViewTop(e: WechatMiniprogram.ScrollViewScrollToUpper) {
+            console.log('inner scroll to upper', e.detail)
+
+            this.setData({ innerScrollable: false })
         },
         onSelectorChange(e: WechatMiniprogram.CustomEvent) {
             const { id } = e.detail
@@ -95,9 +113,85 @@ Component({
                             createSizeSelectors(newType)
                         )
                         this.setData({
-                            sizeSelectors: newSizeSelector
+                            sizeSelectors: newSizeSelector,
+                            displayColorData: newDefaultColor
                         })
+                        if (newDefaultColor.skus.length > 0) {
+                            const newDefaultSKU = newDefaultColor.skus[0]
+                            this.setData({
+                                currentSKU: newDefaultSKU
+                            })
+                        }
                     }
+                }
+            }
+        },
+        onColorChange(e: WechatMiniprogram.CustomEvent) {
+            const { colorid } = e.detail
+            const currentColor = this.data.displayColorData
+            if (currentColor.id === colorid) {
+                return
+            } else {
+                const newColor = this.data.displayTypeData.colors.find(
+                    (color) => color.id === colorid
+                )
+                if (newColor) {
+                    const newSizeSelector = updateSizeSelectors(
+                        newColor,
+                        this.data.sizeSelectors
+                    )
+                    this.setData({
+                        displayColorData: newColor,
+                        sizeSelectors: newSizeSelector
+                    })
+                    if (newColor.skus.length > 0) {
+                        const selectedSize = newSizeSelector.find(
+                            (size) => size.selected
+                        )
+                        if (selectedSize) {
+                            const newSKU = newColor.skus.find(
+                                (sku) => sku.size === selectedSize.id
+                            )
+                            if (newSKU) {
+                                this.setData({
+                                    currentSKU: newSKU
+                                })
+                            } else {
+                                this.setData({
+                                    currentSKU: newColor.skus[0]
+                                })
+                            }
+                        } else {
+                            this.setData({
+                                currentSKU: newColor.skus[0]
+                            })
+                        }
+                    }
+                } else {
+                    return
+                }
+            }
+        },
+        onSizeSelectorChange(e: WechatMiniprogram.CustomEvent) {
+            console.log('detail', e.detail)
+            const { id } = e.detail
+            const sizeSelector = this.data.sizeSelectors
+            const newSizeSelector = sizeSelector.map((size) => {
+                return {
+                    ...size,
+                    selected: size.id === id
+                }
+            })
+            this.setData({
+                sizeSelectors: newSizeSelector
+            })
+            const currentColor = this.data.displayColorData
+            if (currentColor && currentColor.skus.length > 0) {
+                const newSKU = currentColor.skus.find((sku) => sku.size === id)
+                if (newSKU) {
+                    this.setData({
+                        currentSKU: newSKU
+                    })
                 }
             }
         }

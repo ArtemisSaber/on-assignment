@@ -20,6 +20,8 @@ export interface Product {
     displayPrice: number
     coverimage: string
     types: Type[]
+    detailimages: string[]
+    about: About[]
 }
 
 export interface Type {
@@ -47,4 +49,9 @@ export interface Selectors {
     selected: boolean
     id: string
     enabled?: boolean
+}
+
+export interface About {
+    title: string
+    text: string
 }

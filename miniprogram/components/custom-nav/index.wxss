@@ -1,14 +1,97 @@
-.item-main {
-    display: flex;
-    flex-direction: column;
+@import '/static/iconfont/iconfont.wxss';
+
+.bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 40;
     width: 100%;
-    background-color: rgb(250, 247, 246);
-    border-radius: 4px;
+    --height: 44px;
+    --right: 190rpx;
+    overflow: hidden;
 }
 
-.item-info-container {
+.bar .android {
+    --height: 48px;
+    --right: 222rpx;
+}
+
+.inner {
+    z-index: 5001;
+    height: var(--height);
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    align-items: center;
+    padding-right: var(--right);
+    width: calc(100% - var(--right));
+    box-sizing: content-box;
+}
+
+.inner .left {
+    position: relative;
+    width: var(--right);
+    padding-left: 16px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.inner .right {
+    margin-right: 16px;
+}
+
+.inner .center {
+    font-size: 16px;
     text-align: center;
+    position: relative;
+    flex: 1;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.buttons {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.btn-bg {
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    background-color: #fff;
+    border-radius: 100px;
+    height: 30px;
+    width: 30px;
+}
+.btn-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 50%;
+    height: 30px;
+    border-radius: 100px;
+}
+
+.placeholder {
+    position: relative;
+    z-index: 50;
+    visibility: hidden;
+}
+
+.icon-btn {
+    width: 24px;
+    height: 24px;
+    display: block;
+    font-size: 24px;
+    cursor: pointer;
+}
+.icon-arrow {
+    transform: rotateZ(180deg);
+}
+.icon-home {
+    filter: brightness(0.7);
 }

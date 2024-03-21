@@ -9,9 +9,11 @@ Component({
     },
     methods: {
         onTapSelector(e: WechatMiniprogram.BaseEvent) {
-            const { id } = e.currentTarget.dataset
+            const { id, enabled } = e.currentTarget.dataset
             const detail = { id }
-            this.triggerEvent('selectorchange', detail)
+            if (enabled) {
+                this.triggerEvent('selectorchange', detail)
+            }
         }
     }
 })

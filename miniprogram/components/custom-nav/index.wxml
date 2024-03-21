@@ -1,10 +1,16 @@
-<view class="item-main">
-    <view class="item-image-container">
-        <image mode="aspectFit" src="{{item.coverimage}}" style="width:100%;" />
-    </view>
-    <view class="item-info-container">
-        <view class="item-name">{{item.name}}</view>
-        <view class="item-category">{{item.category}}</view>
-        <view class="item-price">{{formattedPrice}}</view>
+<view class="bar">
+    <view class="placeholder  {{ios?'ios':'android'}}" wx:if="{{placehold==='full'}}" style="height:calc({{statusBarHeight}}px + var(--height));"></view>
+    <view class="placeholder {{ios?'ios':'android'}}" wx:elif="{{placehold==='statusBar'}}" style="height:{{statusBarHeight}}px;"></view>
+    <view class="inner {{ios?'ios':'android'}}">
+        <view class="left" style="{{leftWidth}}">
+            <block wx:for="{{buttons}}" wx:key="key">
+                <view class="btn-wrapper" bindtap="handleTapIconButton" data-key="{{item.key}}" hover-class="btn-hover">
+                    <text class="icon-btn iconfont {{item.icon}}"></text>
+                </view>
+            </block>
+        </view>
+        <view class="center" style="opacity:{{titleOpacity>=0?titleOpacity:initialTitleOpacity}};color:{{titleColor}};">
+            <slot></slot>
+        </view>
     </view>
 </view>

@@ -1,14 +1,55 @@
-<scroll-view class="product-layout">
-    <view class="product-cover">
-        <cover-images images="{{displayColorData.images}}"></cover-images>
-    </view>
-    <view class="product-item">
-        <view class="type-selectors content-item">
-            <selector selectors="{{selectors}}" bindselectorchange="onSelectorChange" />
+<nav-bar id="top-nav" theme="light" initial-bg-opacity="1" init-bg-rgb="239, 239, 239" initial-title-opacity="1" placehold="statusBar" bindtopicon="handleTapNavBarItem">
+    <view>ON</view>
+</nav-bar>
+<view class="product-layout">
+    <scroll-view scroll-x="{{false}}" scroll-y="{{true}}" lower-threshold="{{10}}" class="product-item" enhanced="{{true}}" show-scrollbar="{{false}}" bindscrolltolower="onOuterViewLower">
+        <view class="card-outter">
+            <view class="product-cover">
+                <cover-images images="{{displayColorData.images}}"></cover-images>
+            </view>
+            <view class="card-inner">
+                <scroll-view scroll-x="{{false}}" scroll-y="{{innerScrollable}}" upper-threshold="5" scroll-with-animation="{{true}}" enhanced="{{true}}" show-scrollbar="{{false}}" bindscrolltoupper="onInnerViewTop" class="card-content">
+                    <view class="color-selectors content-item">
+                        <color-selector colors="{{displayTypeData.colors}}" currentColor="{{displayColorData.id}}" bindcolortap="onColorChange" />
+                    </view>
+                    <view class="item-info content-item">
+                        <view class="item-color">
+                            <text>{{displayColorData.name}}</text>
+                        </view>
+                        <view class="item-name-price">
+                            <text class="name">{{product.name}}</text>
+                            <price-display sku="{{currentSKU}}"></price-display>
+                        </view>
+                        <view class="item-category">
+                            <text>{{product.category}}</text>
+                        </view>
+                        <view class="item-description">
+                            <text>{{product.description}}</text>
+                        </view>
+                    </view>
+                    <view class="type-selectors content-item">
+                        <selector selectors="{{selectors}}" bindselectorchange="onSelectorChange" />
+                    </view>
+                    <view class="type-description">
+                        <text>{{displayTypeData.name}}尺码选择</text>
+                    </view>
+                    <view class="size-selectors content-item">
+                        <size-selector selectors="{{sizeSelectors}}" bindselectorchange="onSizeSelectorChange" />
+                    </view>
+                    <view class="image-containers content-item">
+                        <block wx:for="{{product.detailimages}}" wx:key="index">
+                            <image src="{{item}}" style="width:100%" mode="widthFix" />
+                        </block>
+                    </view>
+                    <view class="abouts content-item">
+                        <block wx:for="{{product.about}}" key="title">
+                            <about-accordion item="{{item}}" />
+                        </block>
+                    </view>
+                    <view class="action-padding" style="height:94px"></view>
+                </scroll-view>
+            </view>
         </view>
-        <view class="size-selectors content-item">
-            <size-selector selectors="{{sizeSelectors}}" bindselectorchange="onSizeSelectorChange" />
-        </view>
-    </view>
-    <action-bar actions="{{actions}}"></action-bar>
-</scroll-view>
+    </scroll-view>
+</view>
+<action-bar actions="{{actions}}"></action-bar>

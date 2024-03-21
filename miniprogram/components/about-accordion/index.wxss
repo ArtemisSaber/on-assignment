@@ -1,0 +1,30 @@
+@import '/static/iconfont/iconfont.wxss';
+.accordion-main {
+    border-bottom: 1px solid #000;
+    padding-top: 16rpx;
+    padding-bottom: 16rpx;
+}
+.accordion-content {
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out;
+}
+.accordion-title {
+    display: flex;
+    justify-content: space-between;
+}
+.icon {
+    display: block;
+    width: 24px;
+    height: 24px;
+    font-size: 24px;
+    transition: transform 0.15s ease-in-out;
+}
+.icon.show {
+    transform: rotateZ(45deg);
+}
+.accordion-content.hidden {
+    max-height: 0;
+}
+.accordion-content.show {
+    max-height: 700px;
+}

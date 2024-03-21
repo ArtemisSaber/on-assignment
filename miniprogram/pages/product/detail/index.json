@@ -1,13 +1,17 @@
 {
-    "navigationBarTitleText": "",
-    "navigationStyle": "default",
+    "navigationBarTitleText": "ON",
+    "navigationStyle": "custom",
     "enablePullDownRefresh": false,
     "onReachBottomDistance": 50,
     "disableScroll": false,
     "usingComponents": {
+        "nav-bar": "/components/custom-nav/index",
         "selector": "/components/type-selector/index",
         "size-selector": "/components/size-selector/index",
+        "color-selector": "/components/color-selector/index",
         "action-bar": "/components/action-bar/index",
-        "cover-images": "/components/cover-images/index"
+        "cover-images": "/components/cover-images/index",
+        "price-display": "/components/price-display/index",
+        "about-accordion": "/components/about-accordion/index"
     }
 }

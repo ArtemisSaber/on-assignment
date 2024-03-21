@@ -1,0 +1,21 @@
+.sv {
+    height: 128rpx;
+    display: flex;
+}
+.sv .card {
+    height: 128rpx;
+    width: 128rpx;
+    margin-right: 16px;
+    background-color: #faf7f6;
+    border-radius: 4px;
+}
+.sv .card.selected {
+    background-color: #ffffff;
+    border: 1px solid #000;
+    box-sizing: border-box;
+}
+
+.sv .color-image {
+    height: 128rpx;
+    width: 128rpx;
+}

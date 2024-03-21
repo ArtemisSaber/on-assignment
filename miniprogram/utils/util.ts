@@ -143,7 +143,8 @@ export const updateSizeSelectors = (
     const updatedSizes = sizes.map((size) => {
         return {
             ...size,
-            enabled: availSizes.includes(size.id)
+            enabled: availSizes.includes(size.id),
+            selected: size.selected && availSizes.includes(size.id)
         }
     })
     return updatedSizes
